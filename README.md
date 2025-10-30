@@ -120,11 +120,6 @@ def test_divide_by_zero(calc):
         calc.divide(1, 0)
 ```
 
-#### 5. **Floating Point Comparisons**
-```python
-assert calc.power(base, exp) == pytest.approx(expected)
-```
-
 ## Mock Testing Examples
 
 The `mock_tests/` folder showcases different mocking techniques for various scenarios.
@@ -261,21 +256,6 @@ def test_with_context_manager():
         result = function_under_test()
         assert result == "expected"
 ```
-
-## Next Steps
-
-1. **Practice**: Try writing tests for your own code
-2. **Explore**: Learn about integration testing and end-to-end testing
-3. **Tools**: Explore testing frameworks like `unittest`, `nose2`, or `pytest-xdist`
-4. **CI/CD**: Integrate tests into your continuous integration pipeline
-5. **Advanced**: Learn about property-based testing with `hypothesis`
-
-## Resources
-
-- [pytest Documentation](https://docs.pytest.org/)
-- [unittest.mock Documentation](https://docs.python.org/3/library/unittest.mock.html)
-- [Python Testing Best Practices](https://realpython.com/python-testing/)
-- [Test-Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development)
 
 ---
 
