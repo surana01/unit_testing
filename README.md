@@ -256,7 +256,3 @@ def test_with_context_manager():
         result = function_under_test()
         assert result == "expected"
 ```
-
----
-
-Happy Testing! 🧪✨
