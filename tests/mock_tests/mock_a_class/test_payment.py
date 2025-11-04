@@ -1,5 +1,5 @@
 from unittest.mock import Mock
-from payment import process_payment
+from example_code.mock_tests.mock_a_class.payment import process_payment
 
 ################################################################################
 # Mocking with unittest.mock's `Mock` class
