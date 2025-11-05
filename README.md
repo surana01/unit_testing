@@ -1,6 +1,7 @@
 # Unit Testing in Python
 
-A comprehensive introduction to unit testing concepts and practices in Python, featuring practical examples with pytest.
+A comprehensive introduction to unit testing concepts and practices in Python, 
+featuring practical examples with pytest.
 
 ## Table of Contents
 
@@ -15,7 +16,9 @@ A comprehensive introduction to unit testing concepts and practices in Python, f
 
 ## What is Unit Testing?
 
-Unit testing is a software testing method where individual components (units) of a software application are tested in isolation. A "unit" is typically the smallest testable part of an application - often a single function, method, or class.
+Unit testing is a software testing method where individual components (units) of a 
+software application are tested in isolation. A "unit" is typically the smallest 
+testable part of an application - often a single function, method, or class.
 
 ### Key Characteristics:
 - **Isolated**: Each test runs independently without dependencies on other tests
@@ -51,26 +54,11 @@ Unit testing is a software testing method where individual components (units) of
 - Maintain code quality as the project grows
 - Enable continuous integration and deployment
 
-## Repository Structure
-
-```
-unit_testing/
-├── basic_tests/              # Basic testing concepts
-│   ├── calculator.py         # Simple calculator class
-│   └── test_calculator.py    # Tests with asserts, fixtures, parametrization
-├── mock_tests/               # Mock testing examples
-│   ├── mock_simple_function/ # Mocking simple functions
-│   ├── mock_a_class/         # Mocking class methods
-│   └── mock_api_calls/       # Mocking external API calls
-├── requirements.txt          # Project dependencies
-└── README.md                 # This file
-```
-
 ## Getting Started
 
 ### Prerequisites
-- Python 3.7+
-- pip (Python package installer)
+- Python 3.9+
+- [uv](https://docs.astral.sh/uv/)
 
 ### Installation
 
@@ -79,18 +67,19 @@ unit_testing/
 3. Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 ## Basic Testing Examples
 
-The `basic_tests/` folder demonstrates fundamental unit testing concepts using a simple Calculator class.
+The `tests/example_code/basic_tests/` folder demonstrates fundamental unit testing 
+concepts using a simple `Calculator` class.
 
 ### Features Demonstrated:
 
 #### 1. **Basic Assertions**
 ```python
-def test_add(calc):
+def test_adding_two_numbers_works(calc):
     assert calc.add(3, 4) == 7
     assert calc.add(-1, 1) == 0
 ```
@@ -109,20 +98,21 @@ def calc():
     (10, 2, 5),
     (9, 3, 3),
 ])
-def test_divide(calc, a, b, result):
+def test_dividing_two_numbers_works(calc, a, b, result):
     assert calc.divide(a, b) == result
 ```
 
 #### 4. **Exception Testing**
 ```python
-def test_divide_by_zero(calc):
+def test_dividing_by_zero_raises_error(calc):
     with pytest.raises(ValueError):
         calc.divide(1, 0)
 ```
 
 ## Mock Testing Examples
 
-The `mock_tests/` folder showcases different mocking techniques for various scenarios.
+The `tests/example_code/mock_tests/` folder showcases different mocking techniques 
+for various scenarios.
 
 ### 1. **Mocking Simple Functions** (`mock_simple_function/`)
 
@@ -153,7 +143,7 @@ def test_process_payment_success():
 Illustrates mocking external dependencies like HTTP requests:
 
 ```python
-@patch("weather.requests.get")
+@patch("example_code.mock_tests.mock_api_calls.weather.requests.get")
 def test_get_weather_with_mocked_requests(mock_get):
     mock_response = Mock()
     mock_response.json.return_value = {"temp": 25, "desc": "Sunny"}
@@ -165,34 +155,39 @@ def test_get_weather_with_mocked_requests(mock_get):
 
 ### Run All Tests
 ```bash
-pytest
+uv run pytest
 ```
 
 ### Run Tests with Verbose Output
 ```bash
-pytest -v
+uv run pytest -v
 ```
 
 ### Run Specific Test Files
 ```bash
 # Run only basic tests
-pytest basic_tests/
+uv run pytest tests/basic_tests/
 
 # Run only mock tests
-pytest mock_tests/
+uv run pytest tests/mock_tests/
 
 # Run specific test file
-pytest basic_tests/test_calculator.py
+uv run pytest tests/basic_tests/test_calculator.py
 ```
 
 ### Run Tests with Coverage
 ```bash
-pytest --cov=.
+uv run pytest --cov=example_code
+```
+
+### Run Test with Coverage showing untested source code
+```bash
+uv run pytest --cov=example_code --cov-report term-missing
 ```
 
 ### Run Tests and Stop on First Failure
 ```bash
-pytest -x
+uv run pytest -x
 ```
 
 ## Key Testing Concepts
@@ -204,8 +199,8 @@ pytest -x
 
 ### 2. **Test Naming**
 - Use descriptive names that explain what is being tested
-- Follow pattern: `test_<function_name>_<scenario>`
-- Examples: `test_divide_by_zero`, `test_add_positive_numbers`
+- Some possible naming conventions can be 
+  found [here](https://medium.com/@stefanovskyi/unit-test-naming-conventions-dd9208eadbea)
 
 ### 3. **Assertions**
 - Use specific assertions: `assert result == expected`

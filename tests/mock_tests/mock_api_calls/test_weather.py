@@ -1,10 +1,10 @@
 from unittest.mock import patch, Mock
-from weather import get_weather
+from example_code.mock_tests.mock_api_calls.weather import get_weather
 
 ################################################################################
 # Mocking with unittest.mock's `patch` decorator
 ################################################################################
-@patch("weather.requests.get")
+@patch("example_code.mock_tests.mock_api_calls.weather.requests.get")
 def test_get_weather_with_mocked_requests(mock_get):
     """
     Test the `get_weather` function with the `requests.get` call mocked.

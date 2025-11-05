@@ -6,7 +6,7 @@
 # ---------------------------------------------------
 
 import pytest
-from calculator import Calculator
+from example_code.basic_tests.calculator import Calculator
 
 
 # ------------------------
@@ -24,20 +24,18 @@ def calc():
 # ------------------------
 # Basic Operation Tests
 # ------------------------
-def test_add(calc):
-    # Simple addition tests
+def test_adding_two_numbers_works(calc):
     assert calc.add(3, 4) == 7
     assert calc.add(-1, 1) == 0
 
 
-def test_subtract(calc):
-    # Testing subtraction
+def test_subtracting_two_numbers_works(calc):
     assert calc.subtract(10, 5) == 5
 
 
-def test_multiply(calc):
-    # Testing multiplication
-    assert calc.multiply(2, 3) == 6
+# This test uses the fixture defined in conftest.py
+def test_multiplying_two_numbers_works(calc_shared):
+    assert calc_shared.multiply(2, 3) == 6
 
 
 # ------------------------
@@ -49,7 +47,7 @@ def test_multiply(calc):
     (10, 2, 5),
     (9, 3, 3),
 ])
-def test_divide(calc, a, b, result):
+def test_dividing_two_numbers_works(calc, a, b, result):
     """Tests multiple valid division cases using parameterization."""
     assert calc.divide(a, b) == result
 
@@ -58,7 +56,7 @@ def test_divide(calc, a, b, result):
 # Testing Exceptions
 # ------------------------
 # Use pytest.raises to ensure specific errors are thrown under conditions.
-def test_divide_by_zero(calc):
+def test_dividing_by_zero_raises_error(calc):
     """Ensure dividing by zero raises a ValueError."""
     with pytest.raises(ValueError):
         calc.divide(1, 0)
@@ -67,12 +65,12 @@ def test_divide_by_zero(calc):
 # ------------------------
 # Testing List-Based Methods
 # ------------------------
-def test_average(calc):
+def test_averaging_numbers_in_list_works(calc):
     """Check that average of a non-empty list is computed correctly."""
     assert calc.average([1, 2, 3, 4]) == 2.5
 
 
-def test_average_empty(calc):
+def test_averaging_empty_list_raises_error(calc):
     """Ensure average() raises a ValueError when list is empty."""
     with pytest.raises(ValueError):
         calc.average([])
@@ -88,7 +86,7 @@ def test_average_empty(calc):
     (5, 0, 1),       # Any number to the power of 0 = 1
     (2, -2, 0.25),   # Negative exponent — will FAIL due to hidden bug
 ])
-def test_power(calc, base, exp, expected):
+def test_power_operation_works(calc, base, exp, expected):
     """
     Tests the power() method for different exponent cases.
     The third case (2 ** -2) is expected to FAIL because

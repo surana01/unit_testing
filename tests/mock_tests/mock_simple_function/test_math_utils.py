@@ -1,5 +1,7 @@
 from unittest.mock import Mock
-from math_utils import compute_discounted_price
+from example_code.mock_tests.mock_simple_function.math_utils import (
+    compute_discounted_price
+)
 
 
 ################################################################################
